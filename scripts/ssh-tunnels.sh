@@ -18,7 +18,7 @@ done
 
 if [[ -n "${CS_MACHINE}" && -n "${CS_USERNAME}" && -z "${KILL}" ]]; then
     echo "Starting SSH tunnels to ${CS_USERNAME}"
-    ssh -N -L 8000:edir.man.ac.uk:389 \
+    ssh -N -L 8000:edir.manchester.ac.uk:389 \
         "${CS_USERNAME}@${CS_MACHINE}.cs.man.ac.uk" &
     echo $! > "${SSH_PID}"
 elif [[ -z "${CS_MACHINE}" && -z "${CS_USERNAME}" && -n "${KILL}" ]]; then
@@ -26,6 +26,7 @@ elif [[ -z "${CS_MACHINE}" && -z "${CS_USERNAME}" && -n "${KILL}" ]]; then
     kill `cat "${SSH_PID}"`
     rm -f "${SSH_PID}"
 else
-    echo 'Usage: ssh_tunnels.ssh (-m <cs_machine> -u <cs_username> | -k)'
+    echo 'Usage: ssh-tunnels.ssh (-m <cs_machine> -u <cs_username> | -k)'
+    exit 1
 fi
 

@@ -112,6 +112,8 @@ class MSR605:
         self._serial = conn
 
     def __enter__(self):
+        # close hack
+        self._serial.close()
         self._serial.open()
         self.reset()
         return self

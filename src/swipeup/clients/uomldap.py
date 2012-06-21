@@ -41,5 +41,5 @@ class UomLdapClient(threading.Thread):
         else:
             if ldap_result and len(ldap_result[0]) >= 1:
                 return ldap_result[0][1]
-            _logger.warning('No results for Student ID: %s', person_id)
+            _logger.error('No results for Student ID: %s', person_id)
 
